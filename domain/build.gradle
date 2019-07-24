@@ -1,0 +1,14 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation developmentDependencies.kotlinStdLib
+    implementation developmentDependencies.retrofit
+    implementation developmentDependencies.retrofitGsonConverter
+    implementation developmentDependencies.coroutinesAndroid
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

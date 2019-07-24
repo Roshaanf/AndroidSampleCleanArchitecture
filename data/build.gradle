@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode versionCode
+        versionName versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":domain")
+
+    implementation developmentDependencies.kotlinStdLib
+    implementation developmentDependencies.roomRuntime
+
+
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    testImplementation testDependencies.junit
+    androidTestImplementation androidTestDependencies.testRunner
+    androidTestImplementation androidTestDependencies.espresseo
+}
