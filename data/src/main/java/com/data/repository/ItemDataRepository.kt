@@ -18,14 +18,14 @@ class ItemDataRepository constructor(
     GetItemRepository {
 
     override suspend fun getItems(): Result<List<ItemEntity>> {
-
+throw Exception()
     }
 
     override suspend fun getItem(id: Int): Result<ItemEntity> {
         val result = itemRemoteDataSource.getItem(id)
 
         if (result is Result.Success)
-            return Result.Success(itemEntityMapper.transform(result.data))
+            return Result.Success(itemEntityMapper.transform(result.data!!))
 
         return result as Result<Nothing>
     }
