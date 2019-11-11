@@ -1,9 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: 'dependencies.gradle'
 
 // buildscript block is only for dependencies required by gradle to build the project
 buildscript {
-    ext.kotlin_version = '1.3.20'
     repositories {
 //        gradle will fetch dependencies from here for itself to build project,dependencies declared
 //        with classpath will be downloaded from below repositorie, dependencies for our project
@@ -16,8 +14,8 @@ buildscript {
     }
     dependencies {
 //        classpath is used when buildscript/gradle needs dependencies, when our project need dependencies we use implementation
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath( GradleDependencies.androidGradleTools)
+        classpath (GradleDependencies.kotlinGradlePlugin)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -44,18 +42,9 @@ subprojects {
 //    we dont declare dependencies block here because each module will define its dependencies in its
 //    build.gradle
 
-
-//    declaring global sdk versions
-    ext {
-        androidCompileSdkVersion = 28
-        androidMinSdkVersion = 21
-        androidTargetSdkVersion = 28
-        versionCode = 1
-        versionName = "1.0"
-    }
 }
 
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register("clean").configure {
+    delete("build")
 }
