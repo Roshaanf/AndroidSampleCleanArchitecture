@@ -35,6 +35,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
+//    if jars are added manually in module/libs folder then below line will include them as depenency in project
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(DevelopmentDependencies.kotlinStdLib)
     implementation(DevelopmentDependencies.appCompat)
