@@ -18,7 +18,7 @@ class ItemDataRepository constructor(
     GetItemRepository {
 
     override suspend fun getItems(): Result<List<ItemEntity>> {
-throw Exception()
+        throw Exception()
     }
 
     override suspend fun getItem(id: Int): Result<ItemEntity> {

@@ -51,8 +51,7 @@ dependencies {
     //    retrofit
     implementation(DevelopmentDependencies.retrofit)
     implementation(DevelopmentDependencies.retrofitGsonConverter)
-//    coroutine adapter
-    implementation(DevelopmentDependencies.kotlinRetrofitCoroutineAdapter)
+
 
 //    coroutines
     implementation(DevelopmentDependencies.coroutinesAndroid)
