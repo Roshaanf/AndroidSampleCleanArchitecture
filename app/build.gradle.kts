@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -7,7 +6,7 @@ plugins {
 }
 
 
-android{
+android {
 
     compileSdkVersion(AppConfiguration.androidCompileSdkVersion)
 
@@ -15,18 +14,36 @@ android{
         applicationId = "com.samplecleanarchitecture"
         minSdkVersion(AppConfiguration.androidMinSdkVersion)
         targetSdkVersion(AppConfiguration.androidTargetSdkVersion)
-        versionCode= AppConfiguration.versionCode
-        versionName =AppConfiguration.versionName
+        versionCode = AppConfiguration.versionCode
+        versionName = AppConfiguration.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         getByName("release") {
+            //            minify enabled will reduce the size of apk by removing unused code
+//            when set to true for each build it generates decode key which is
+//            stored in build/outs in mappings.txt , make sure to save that key before
+//            uploading build because minifyenabled makes code jumble and you wont be
+//            able to read stacktrace correctly
+//            set also shrinkResources to true when setting minifyEnabled true
+//            minify enabled works on java side and shrink resources works for resources(res) side
+
+            isShrinkResources = false
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "BASE_URL", "\"http://dummy.restapiexample.com/api/\"")
         }
+
+        getByName("debug") {
+            buildConfigField("String", "BASE_URL", "\"http://dummy.restapiexample.com/api/\"")
+        }
+
     }
     dataBinding {
-        isEnabled =true
+        isEnabled = true
     }
 }
 
@@ -45,7 +62,8 @@ dependencies {
     implementation(DevelopmentDependencies.legacySupport)
 
     //    lifecycle
-    implementation(DevelopmentDependencies.lifecycle)
+    implementation(DevelopmentDependencies.viewModelKtx)
+//    implementation(DevelopmentDependencies.liveData)
 
 
     //    retrofit
@@ -60,6 +78,14 @@ dependencies {
     implementation(DevelopmentDependencies.roomRuntime)
     implementation(DevelopmentDependencies.roomCoroutine)
     kapt(DevelopmentDependencies.roomCompiler)
+
+//    dagger
+    implementation(DevelopmentDependencies.dagger)
+    kapt(DevelopmentDependencies.daggerCompiler)
+
+//    glide
+    implementation(DevelopmentDependencies.glide)
+
 
     testImplementation(TestDependencies.junit)
     androidTestImplementation(AndroidTestDependencies.testRunner)

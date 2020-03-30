@@ -23,8 +23,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class ItemDetail : BaseFragment() {
 
-    lateinit var viewModel: ItemDetailViewModel
-    lateinit var viewModelFactory: ItemDetailViewModelFactory
+    private lateinit var viewModel: ItemDetailViewModel
+    private lateinit var viewModelFactory: ItemDetailViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

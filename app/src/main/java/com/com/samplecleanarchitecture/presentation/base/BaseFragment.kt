@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.aapa.base.UIEvents
 import com.com.samplecleanarchitecture.R
 import com.com.samplecleanarchitecture.presentation.util.exhaustive
@@ -47,11 +46,11 @@ abstract class BaseFragment : Fragment() {
     abstract fun initializeComponents()
     abstract fun setObservers()
 
-
     protected inline fun <reified V : ViewModel> attachViewModel(viewModelFactory: ViewModelProvider.Factory): V =
-        ViewModelProviders.of(this, viewModelFactory).get(V::class.java)
+        ViewModelProvider(this, viewModelFactory).get(V::class.java)
 
 
+//    call this inside initialize components and pass viewmodel
     fun observeUIEvents(viewModel: BaseViewModel) {
         viewModel.obUiEvent.observe(viewLifecycleOwner, Observer {
             var event = it.getEventIfNotHandled()
@@ -61,9 +60,6 @@ abstract class BaseFragment : Fragment() {
 
                     UIEvents.HideLoader ->
                         hideLoader()
-                    is UIEvents.Exception ->
-                        showException(event.message)
-
                     is UIEvents.Error ->
                         showError(event.message)
 
@@ -75,10 +71,6 @@ abstract class BaseFragment : Fragment() {
 
     protected fun showToast(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-    }
-
-    protected fun showException(message: String) {
-        showToast(message)
     }
 
     protected fun showError(message: String) {

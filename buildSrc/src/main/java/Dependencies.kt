@@ -7,14 +7,17 @@ object AppConfiguration {
 }
 
 object Versions {
-    val kotlin_version = "1.3.20"
+    val kotlin_version = "1.3.50"
     val retrofit_version = "2.6.2"
     val constraint_layout_version = "2.0.0-alpha2"
+    val lifecycle_version = "2.2.0"
     val junit_version = "4.12"
     val appcompat_version = "1.0.0-rc01"
     val ktx_core_version = "1.0.1"
-    val coroutine_version = "1.2.1"
+    val coroutine_version = "1.3.5"
     val room_version = "2.1.0-alpha04"
+    val dagger_version = "2.27"
+    val glide_version = "4.11.0"
 }
 
 object GradleDependencies {
@@ -30,16 +33,28 @@ object DevelopmentDependencies {
     val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout_version}"
     val legacySupport = "androidx.legacy:legacy-support-v4:1.0.0-beta01"
-    val lifecycle = "androidx.lifecycle:lifecycle-extensions:2.0.0-rc01"
+
+    //    viewmodel ktx for viewmodelScope etc
+    val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
+//    val liveData = "androidx.lifecycle:lifecycle-livedata:${Versions.lifecycle_version}"
 
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
     val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_version}"
+    //   this dependecy contains coroutines also Dispatcher.Main which is specialized for android
     val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_version}"
+    //    this dependency wont include android side, so adding core dependency for only domain module
+//  as we don't want out domain to have android dependency
+    val coroutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine_version}"
     val roomRuntime = "androidx.room:room-runtime:${Versions.room_version}"
     val roomCoroutine = "androidx.room:room-coroutines:${Versions.room_version}"
     val roomCompiler = "androidx.room:room-compiler:${Versions.room_version}"
 
+    val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+
+    val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
+    val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
 }
 
 

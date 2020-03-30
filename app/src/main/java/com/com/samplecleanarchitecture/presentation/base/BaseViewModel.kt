@@ -16,11 +16,6 @@ open class BaseViewModel : ViewModel() {
         hideLoader()
     }
 
-    protected fun showException(exception: Exception) {
-        _uiEvent.value = BaseEvent(UIEvents.Exception(exception.message!!))
-        hideLoader()
-    }
-
     protected fun showLoader() {
         _uiEvent.value = BaseEvent(UIEvents.ShowLoader)
     }

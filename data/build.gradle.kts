@@ -1,5 +1,8 @@
 plugins {
     id("com.android.library")
+//    if android kotlin plugin is removed then dependenct module will throw unresolved class while building
+    kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -32,8 +35,18 @@ dependencies {
     implementation(project(":domain"))
 
     implementation(DevelopmentDependencies.kotlinStdLib)
-    implementation(DevelopmentDependencies.roomRuntime)
 
+//    retrofit
+    implementation(DevelopmentDependencies.retrofit)
+    implementation(DevelopmentDependencies.retrofitGsonConverter)
+
+    //    room
+    implementation(DevelopmentDependencies.roomRuntime)
+    implementation(DevelopmentDependencies.roomCoroutine)
+    kapt(DevelopmentDependencies.roomCompiler)
+
+    implementation(DevelopmentDependencies.dagger)
+    kapt(DevelopmentDependencies.daggerCompiler)
 
     implementation("androidx.appcompat:appcompat:1.0.0-beta01")
     testImplementation(TestDependencies.junit)

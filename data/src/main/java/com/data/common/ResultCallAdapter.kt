@@ -4,10 +4,14 @@ import com.domain.common.Result
 import okhttp3.Request
 import retrofit2.*
 import java.io.IOException
+import java.lang.Exception
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ResultCallAdapterFactory : CallAdapter.Factory() {
+@Singleton
+class ResultCallAdapterFactory @Inject constructor() : CallAdapter.Factory() {
 
     override fun get(
         returnType: Type,
@@ -53,30 +57,31 @@ class ResultCallAdapterFactory : CallAdapter.Factory() {
 
             proxy.enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
-                    val code = response.code()
+                    val code: Int = response.code()
 
-                    val result = if (code in 200 until 300) {
-                        val body = response.body()
-                        Result.Success(body)
-                    } else {
-                        Result.Error("Error")
-                    }
+
+                    val result = if (code in 200 until 300)
+                        Result.Success(response.body())
+                    else if (code == 404)
+                        Result.Error(ResourceNotFound("Resource Not Found"))
+                    else if (code in 401..403)
+                        Result.Error(UnAuthenticatedException("Unauthenticated"))
+                    else
+                        Result.Error(Exception(response.errorBody()?.string()))
+
 
                     callback.onResponse(this@ResultCall, Response.success(result))
                 }
 
                 override fun onFailure(call: Call<T>, t: Throwable) {
 
-//                handle network error
+                    val result = if (t is IOException)
+//                        network error
+                        Result.Error(ConnectivityException("Unable to connect to server"))
+                    else
+//                        converter/deserializing exception when server returns wrong json
+                        Result.Error(ConverterException("Oops! Unexpected response"))
 
-                    val result = if (t is IOException) {
-//                    Result.NetworkError
-                        Result.Error("Network error")
-                    } else {
-//                        check if casting exception is throwing here or not
-//                    other exceptions
-                        Result.Error("")
-                    }
 
                     callback.onResponse(this@ResultCall, Response.success(result))
                 }
@@ -84,7 +89,6 @@ class ResultCallAdapterFactory : CallAdapter.Factory() {
 
         override fun cloneImpl() = ResultCall(proxy.clone())
     }
-
 
 
     abstract class CallDelegate<TIn, TOut>(

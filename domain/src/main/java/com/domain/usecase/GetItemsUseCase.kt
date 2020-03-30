@@ -1,22 +1,15 @@
 package com.domain.usecase
 
 import com.domain.common.Result
-import com.domain.common.RunOnBackgroundThread
-import com.domain.entity.ItemEntity
-import com.domain.repository.GetItemsRepository
-
+import com.domain.common.runOnBackgroundThread
+import com.domain.entity.EmployeeEntity
+import com.domain.repository.GetEmployeesRepository
 
 class GetItemsUseCase constructor(
-    private val getItemsRepository: GetItemsRepository,
-    private val runOnBackgroundThread: RunOnBackgroundThread
-) {
+    private val getItemsRepository: GetEmployeesRepository
+    ) {
 
-    suspend operator fun invoke(): Result<List<ItemEntity>> =
-        runOnBackgroundThread {
-            val result = getItemsRepository.getItems()
-            if (result is Result.Success)
-                println("Asd")
-            result
-        }
+    suspend operator fun invoke(): Result<List<EmployeeEntity>> =
+        runOnBackgroundThread(getItemsRepository::getEmployees)
 
 }
