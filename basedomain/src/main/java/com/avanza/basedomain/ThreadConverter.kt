@@ -1,4 +1,4 @@
-package com.domain.common
+package com.avanza.basedomain
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

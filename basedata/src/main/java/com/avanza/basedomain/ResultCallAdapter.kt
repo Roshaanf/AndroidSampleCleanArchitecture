@@ -1,6 +1,5 @@
 package com.data.common
 
-import com.domain.common.Result
 import okhttp3.Request
 import retrofit2.*
 import java.io.IOException
@@ -9,6 +8,7 @@ import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import javax.inject.Inject
 import javax.inject.Singleton
+import com.avanza.basedomain.Result
 
 @Singleton
 class ResultCallAdapterFactory @Inject constructor() : CallAdapter.Factory() {

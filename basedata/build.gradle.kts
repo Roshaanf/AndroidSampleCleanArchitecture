@@ -30,25 +30,25 @@ android {
 
 dependencies {
     //    if jars are added manually in module/libs folder then below line will include them as depenency in project
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(project(":item:domain"))
+    implementation(project(":basedomain"))
 
-    implementation(DevelopmentDependencies.kotlinStdLib)
+    api(DevelopmentDependencies.kotlinStdLib)
 
 //    retrofit
-    implementation(DevelopmentDependencies.retrofit)
-    implementation(DevelopmentDependencies.retrofitGsonConverter)
+    api(DevelopmentDependencies.retrofit)
+    api(DevelopmentDependencies.retrofitGsonConverter)
 
     //    room
-    implementation(DevelopmentDependencies.roomRuntime)
-    implementation(DevelopmentDependencies.roomCoroutine)
+    api(DevelopmentDependencies.roomRuntime)
+    api(DevelopmentDependencies.roomCoroutine)
     kapt(DevelopmentDependencies.roomCompiler)
 
-    implementation(DevelopmentDependencies.dagger)
+    api(DevelopmentDependencies.dagger)
     kapt(DevelopmentDependencies.daggerCompiler)
 
-    implementation("androidx.appcompat:appcompat:1.0.0-beta01")
+    api("androidx.appcompat:appcompat:1.0.0-beta01")
     testImplementation(TestDependencies.junit)
     androidTestImplementation(AndroidTestDependencies.testRunner)
     androidTestImplementation(AndroidTestDependencies.espresseo)

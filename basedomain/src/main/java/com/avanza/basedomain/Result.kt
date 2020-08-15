@@ -1,4 +1,4 @@
-package com.domain.common
+package com.avanza.basedomain
 
 import java.lang.Exception
 

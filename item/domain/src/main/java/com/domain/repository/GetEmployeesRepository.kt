@@ -1,6 +1,6 @@
 package com.domain.repository
 
-import com.domain.common.Result
+import com.avanza.basedomain.Result
 import com.domain.entity.EmployeeEntity
 
 
