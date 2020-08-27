@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 
 @DataScope
-class EmployeeRemoteDataSource @Inject constructor(
+internal class EmployeeRemoteDataSource @Inject constructor(
     private val employeeService: EmployeeService
 ) {
 

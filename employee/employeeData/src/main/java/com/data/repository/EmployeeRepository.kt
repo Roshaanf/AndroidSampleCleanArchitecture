@@ -15,7 +15,7 @@ import com.basedomain.toResult
 import javax.inject.Inject
 
 @DataScope
-class EmployeeRepository @Inject constructor(
+internal class EmployeeRepository @Inject constructor(
     private val employeeLocalDataSource: EmployeeLocalDataSource,
     private val employeeRemoteDataSource: EmployeeRemoteDataSource
 ) :

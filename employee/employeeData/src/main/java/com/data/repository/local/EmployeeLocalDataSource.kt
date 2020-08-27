@@ -4,5 +4,5 @@ import com.basedata.di.scope.DataScope
 import javax.inject.Inject
 
 @DataScope
-class EmployeeLocalDataSource @Inject constructor() {
+internal class EmployeeLocalDataSource @Inject constructor() {
 }

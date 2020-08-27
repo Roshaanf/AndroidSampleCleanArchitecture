@@ -4,7 +4,7 @@ import com.domain.repository.GetEmployeeRepository
 import com.domain.repository.GetEmployeesRepository
 
 
-interface DataProvider {
+interface DataRequire {
     fun employeeRepository():GetEmployeeRepository
     fun employeesRepository(): GetEmployeesRepository
 }

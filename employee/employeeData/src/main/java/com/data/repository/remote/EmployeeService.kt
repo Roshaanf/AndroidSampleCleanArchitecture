@@ -7,7 +7,7 @@ import com.data.model.EmployeesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface EmployeeService {
+internal interface EmployeeService {
 
 //    @GET("item?id={id}")
 //    fun getItem(@Path("id") id: Int): Deferred<ItemData>
