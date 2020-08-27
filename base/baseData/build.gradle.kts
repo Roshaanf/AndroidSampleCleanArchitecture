@@ -23,32 +23,37 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"http://dummy.restapiexample.com/api/\"")
 
+
+        }
+        getByName("debug") {
+            buildConfigField("String", "BASE_URL", "\"http://dummy.restapiexample.com/api/\"")
         }
     }
 }
 
 dependencies {
     //    if jars are added manually in module/libs folder then below line will include them as depenency in project
-    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(":base:baseDomain"))
 
-    implementation(project(":basedomain"))
+//    kotlin
+    implementation(DevelopmentDependencies.kotlinStdLib)
 
-    api(DevelopmentDependencies.kotlinStdLib)
 
 //    retrofit
-    api(DevelopmentDependencies.retrofit)
-    api(DevelopmentDependencies.retrofitGsonConverter)
+    implementation(DevelopmentDependencies.retrofit)
+    implementation(DevelopmentDependencies.retrofitGsonConverter)
 
-    //    room
-    api(DevelopmentDependencies.roomRuntime)
-    api(DevelopmentDependencies.roomCoroutine)
-    kapt(DevelopmentDependencies.roomCompiler)
 
-    api(DevelopmentDependencies.dagger)
+    //    dagger
+    implementation(DevelopmentDependencies.dagger)
     kapt(DevelopmentDependencies.daggerCompiler)
 
-    api("androidx.appcompat:appcompat:1.0.0-beta01")
+
+    implementation(DevelopmentDependencies.okhttpLoggingInterceptor)
+
     testImplementation(TestDependencies.junit)
     androidTestImplementation(AndroidTestDependencies.testRunner)
     androidTestImplementation(AndroidTestDependencies.espresseo)

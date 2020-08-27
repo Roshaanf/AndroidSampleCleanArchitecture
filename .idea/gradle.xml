@@ -12,13 +12,15 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/basedata" />
-            <option value="$PROJECT_DIR$/basedomain" />
+            <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/base/baseData" />
+            <option value="$PROJECT_DIR$/base/baseDomain" />
+            <option value="$PROJECT_DIR$/base/basePresentation" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/item" />
-            <option value="$PROJECT_DIR$/item/data" />
-            <option value="$PROJECT_DIR$/item/domain" />
-            <option value="$PROJECT_DIR$/item/view" />
+            <option value="$PROJECT_DIR$/employee" />
+            <option value="$PROJECT_DIR$/employee/employeeData" />
+            <option value="$PROJECT_DIR$/employee/employeeDomain" />
+            <option value="$PROJECT_DIR$/employee/employeePresentation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

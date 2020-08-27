@@ -1,6 +1,6 @@
 package com.domain.di
 
-import com.avanza.basedomain.DomainScope
+import com.basedomain.DomainScope
 import com.domain.di.expose.DomainExposer
 import com.domain.di.require.DataProvider
 import dagger.Component

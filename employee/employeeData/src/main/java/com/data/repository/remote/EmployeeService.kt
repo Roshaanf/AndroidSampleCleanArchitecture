@@ -1,11 +1,11 @@
 package com.data.repository.remote
 
-import com.data.model.EmployeeData
-import com.avanza.basedomain.Result
-import kotlinx.coroutines.Deferred
+import com.data.db.entity.EmployeeData
+import com.basedomain.Result
+import com.data.model.EmployeeResponse
+import com.data.model.EmployeesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface EmployeeService {
 
@@ -14,15 +14,18 @@ interface EmployeeService {
 //
 
     @GET("v1/employees")
-    suspend fun getEmployees(): Result<List<EmployeeData>>
+    suspend fun getEmployees(): Result<EmployeesResponse>
 
-    @GET("v1/employee/USER_ID")
+    @GET(
+        "v1/employee/" +
+                "{USER_ID}"
+    )
     suspend fun getEmplyee(
         @Path(
             value = "USER_ID",
             encoded = true
         ) userId: Int
-    ): Result<EmployeeData>
+    ): Result<EmployeeResponse>
 
 
 }

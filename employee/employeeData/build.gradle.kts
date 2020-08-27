@@ -31,7 +31,7 @@ android {
 dependencies {
     //    if jars are added manually in module/libs folder then below line will include them as depenency in project
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(project(":item:itemDomain"))
+    implementation(project(":employee:employeeDomain"))
     implementation(project(":base:baseData"))
 
     implementation(DevelopmentDependencies.kotlinStdLib)
@@ -45,6 +45,7 @@ dependencies {
     implementation(DevelopmentDependencies.roomCoroutine)
     kapt(DevelopmentDependencies.roomCompiler)
 
+//    dagger
     implementation(DevelopmentDependencies.dagger)
     kapt(DevelopmentDependencies.daggerCompiler)
 

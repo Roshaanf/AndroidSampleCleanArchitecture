@@ -7,7 +7,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class DataModule {
+internal abstract class DataModule {
     @Binds
     abstract fun bindEmployeeRepository(repository: EmployeeRepository): GetEmployeeRepository
     @Binds

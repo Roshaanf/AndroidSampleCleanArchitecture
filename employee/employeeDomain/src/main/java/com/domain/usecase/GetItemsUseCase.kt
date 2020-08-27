@@ -1,8 +1,8 @@
 package com.domain.usecase
 
-import com.avanza.basedomain.DomainScope
-import com.avanza.basedomain.Result
-import com.avanza.basedomain.runOnBackgroundThread
+import com.basedomain.DomainScope
+import com.basedomain.Result
+import com.basedomain.runOnBackgroundThread
 import com.domain.entity.EmployeeEntity
 import com.domain.repository.GetEmployeesRepository
 import javax.inject.Inject

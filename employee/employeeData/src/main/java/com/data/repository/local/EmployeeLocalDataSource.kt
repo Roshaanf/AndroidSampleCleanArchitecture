@@ -1,5 +1,8 @@
 package com.data.repository.local
 
+import com.basedata.di.scope.DataScope
+import javax.inject.Inject
 
-class EmployeeLocalDataSource constructor() {
+@DataScope
+class EmployeeLocalDataSource @Inject constructor() {
 }

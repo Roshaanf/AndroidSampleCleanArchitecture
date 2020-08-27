@@ -6,12 +6,12 @@ plugins {
 
 dependencies {
     //    if jars are added manually in module/libs folder then below line will include them as depenency in project
-    api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    api(DevelopmentDependencies.kotlinStdLib)
-    api(DevelopmentDependencies.coroutines)
+    implementation(DevelopmentDependencies.kotlinStdLib)
+    implementation(DevelopmentDependencies.coroutines)
 
-    api(DevelopmentDependencies.dagger)
+    implementation(DevelopmentDependencies.dagger)
     kapt(DevelopmentDependencies.daggerCompiler)
 }
 

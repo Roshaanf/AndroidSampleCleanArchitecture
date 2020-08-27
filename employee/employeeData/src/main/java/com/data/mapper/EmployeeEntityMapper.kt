@@ -1,26 +1,35 @@
 package com.data.mapper
 
-import com.data.model.EmployeeData
+import com.data.db.entity.EmployeeData
+import com.data.model.EmployeeResponse
+import com.data.model.EmployeesResponse
 import com.domain.entity.EmployeeEntity
 
 
-fun transform(employeeData: EmployeeData?): EmployeeEntity = if (employeeData == null)
+fun transform(employeeResponse: EmployeeResponse?): EmployeeEntity = if (employeeResponse == null)
     EmployeeEntity()
-else
-    EmployeeEntity(
-        employeeData.id,
-        employeeData.employee_name,
-        employeeData.employee_salary,
-        employeeData.employee_age,
-        employeeData.profile_image
-    )
+else transform(employeeResponse.data)
 
 
-fun transform(employees: List<EmployeeData>?): List<EmployeeEntity> = if (employees == null)
+private fun transform(employeeData: EmployeeData?) =
+    if (employeeData == null) EmployeeEntity()
+    else
+        employeeData.run {
+            EmployeeEntity(
+                id,
+                employee_name,
+                employee_salary,
+                employee_age,
+                profile_image
+            )
+        }
+
+
+fun transform(employees: EmployeesResponse?): List<EmployeeEntity> = if (employees == null)
     mutableListOf()
 else
     mutableListOf<EmployeeEntity>().also { list ->
-        employees.forEach {
+        employees.data?.forEach {
             list.add(transform(it))
         }
     }

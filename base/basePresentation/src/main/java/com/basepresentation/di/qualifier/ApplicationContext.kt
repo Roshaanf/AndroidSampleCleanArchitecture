@@ -1,4 +1,7 @@
 package com.basepresentation.di.qualifier
 
-class ApplicationContext {
-}
+import javax.inject.Qualifier
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ApplicationContext

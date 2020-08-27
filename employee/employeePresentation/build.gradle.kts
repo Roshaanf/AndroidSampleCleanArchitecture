@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -34,8 +35,8 @@ android {
 
 dependencies {
     implementation(project(":base:basePresentation"))
-    implementation(project(":item:itemDomain"))
-    implementation(project(":item:itemData"))
+    implementation(project(":employee:employeeDomain"))
+    implementation(project(":employee:employeeData"))
 
     //    if jars are added manually in module/libs folder then below line will include them as depenency in project
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
@@ -50,6 +51,13 @@ dependencies {
 
     //    lifecycle
     implementation(DevelopmentDependencies.viewModelKtx)
+
+    //    coroutines
+    implementation(DevelopmentDependencies.coroutinesAndroid)
+
+//    dagger
+    implementation(DevelopmentDependencies.dagger)
+    kapt(DevelopmentDependencies.daggerCompiler)
 
     testImplementation(TestDependencies.junit)
     androidTestImplementation(AndroidTestDependencies.testRunner)

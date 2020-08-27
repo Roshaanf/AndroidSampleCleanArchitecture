@@ -1,8 +1,8 @@
-package com.avanza.basedomain.local
+package com.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.data.model.EmployeeData
+import com.data.db.entity.EmployeeData
 
 /*
 * This db is only for saving common tables between features,

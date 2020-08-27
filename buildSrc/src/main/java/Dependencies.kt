@@ -9,6 +9,7 @@ object AppConfiguration {
 object Versions {
     val kotlin_version = "1.3.50"
     val retrofit_version = "2.6.2"
+    val okhttp_logging_interceptor_version = "3.12.1"
     val constraint_layout_version = "2.0.0-alpha2"
     val lifecycle_version = "2.2.0"
     val junit_version = "4.12"
@@ -40,6 +41,7 @@ object DevelopmentDependencies {
 
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
     val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_version}"
+    val okhttpLoggingInterceptor="com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor_version}"
     //   this dependecy contains coroutines also Dispatcher.Main which is specialized for android
     val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_version}"

@@ -1,4 +1,4 @@
-package com.avanza.basedomain.local
+package com.data.db
 
 import androidx.room.Dao
 

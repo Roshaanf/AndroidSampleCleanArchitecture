@@ -1,4 +1,4 @@
 include(
-    ":app", ":basedata", ":basedomain",
-    ":item:view", ":item:domain", ":item:data"
+    ":app", ":base:baseData", ":base:baseDomain",":base:basePresentation",
+    ":employee:employeePresentation", ":employee:employeeDomain", ":employee:employeeData"
 )

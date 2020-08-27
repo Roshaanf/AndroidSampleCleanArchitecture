@@ -2,15 +2,14 @@ package com.data.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.avanza.basedomain.di.scope.BaseDataScope
-import com.avanza.basedomain.di.scope.DataScope
-import com.avanza.basedomain.local.EmployeeDb
+import com.basedata.di.scope.DataScope
 import com.data.R
+import com.data.db.EmployeeDb
 import dagger.Module
 import dagger.Provides
 
 @Module
-object RoomModule {
+internal object RoomModule {
 
     @Synchronized
     @JvmStatic
