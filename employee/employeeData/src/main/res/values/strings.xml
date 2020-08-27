@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">data</string>
+    <string name="db_name">EmpployeeDb</string>
+
+</resources>
