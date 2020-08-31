@@ -1,4 +1,4 @@
-package com.com.samplecleanarchitecture.presentation
+package com.samplecleanarchitecture
 
 import android.app.Application
 import com.basepresentation.BaseApplication

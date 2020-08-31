@@ -1,48 +1,37 @@
-package com.presentation
+package com.aboutpresentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.domain.usecase.GetItemUseCase
-import kotlinx.coroutines.async
+import com.aboutdomain.usecase.FetchAboutUsUseCase
 import com.basedomain.Result
-import com.basepresentation.base.BaseEvent
 import com.basepresentation.base.BaseViewModel
 import com.basepresentation.di.scope.PresentationScope
 import com.basepresentation.util.parseError
+import kotlinx.coroutines.async
 import javax.inject.Inject
 
 @PresentationScope
-class ItemDetailViewModel
-@Inject constructor(
-    private val getItemUseCase: GetItemUseCase,
-    val itemDetailUiModel: ItemDetailUiModel
-) :
+class AboutUsViewModel @Inject constructor(private val fetchAboutUsUseCase: FetchAboutUsUseCase) :
     BaseViewModel() {
 
-    private val _events = MutableLiveData<BaseEvent<ItemDetailEvents>>()
-    val events: LiveData<BaseEvent<ItemDetailEvents>>
-        get() = _events
+    private val _aboutUsText: MutableLiveData<String> = MutableLiveData()
+    val aboutUsText: LiveData<String>
+        get() = _aboutUsText
 
     init {
         showLoader()
 
         viewModelScope.async {
-            when (val result = getItemUseCase(1)) {
+            when (val result = fetchAboutUsUseCase()) {
                 is Result.Success -> {
                     hideLoader()
-                    itemDetailUiModel.map(result.data ?: return@async)
+                    _aboutUsText.value = result.data
                 }
                 is Result.Error -> {
                     showError(parseError(result.exception))
                 }
             }
         }
-
     }
-
-    fun onAboutUsClicked() {
-        _events.value = BaseEvent(ItemDetailEvents.OPEN_ABOUT_US)
-    }
-
 }
