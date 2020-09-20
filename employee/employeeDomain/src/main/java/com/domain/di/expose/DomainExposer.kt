@@ -1,9 +1,9 @@
 package com.domain.di.expose
 
-import com.domain.usecase.GetItemUseCase
-import com.domain.usecase.GetItemsUseCase
+import com.domain.usecase.GetEmployeeUseCase
+import com.domain.usecase.GetEmployeesUseCase
 
 interface DomainExposer {
-    fun exposeGetItemsUseCase(): GetItemsUseCase
-    fun exposeGetItemUseCase(): GetItemUseCase
+    fun exposeGetItemsUseCase(): GetEmployeesUseCase
+    fun exposeGetItemUseCase(): GetEmployeeUseCase
 }

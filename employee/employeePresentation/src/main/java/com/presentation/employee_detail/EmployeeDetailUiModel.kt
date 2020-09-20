@@ -1,13 +1,14 @@
-package com.presentation
+package com.presentation.employee_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.basepresentation.di.scope.PresentationScope
 import com.domain.entity.EmployeeEntity
+import com.presentation.di.scope.EmployeeDetailScope
 import javax.inject.Inject
 
-@PresentationScope
-class ItemDetailUiModel
+@EmployeeDetailScope
+internal class EmployeeDetailUiModel
 @Inject constructor() {
 
     private val _title: MutableLiveData<String> = MutableLiveData()

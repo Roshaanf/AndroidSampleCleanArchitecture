@@ -1,5 +1,6 @@
 package com.basepresentation.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -69,5 +70,12 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract protected fun showLoader()
     abstract protected fun hideLoader()
 
+    fun startActivity(className: String) {
+        val intent = Intent(
+            this,
+            Class.forName(className)
+        )
+        startActivity(intent)
+    }
 
 }

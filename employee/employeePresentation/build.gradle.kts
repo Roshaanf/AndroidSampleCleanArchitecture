@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -27,8 +28,11 @@ android {
         }
     }
 
-    dataBinding {
-        isEnabled = true
+    buildFeatures {
+
+        dataBinding = true
+
+        viewBinding = true
     }
 }
 
@@ -54,9 +58,13 @@ dependencies {
     //    coroutines
     implementation(DevelopmentDependencies.coroutinesAndroid)
 
+    implementation(DevelopmentDependencies.recyclerView)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+
 //    dagger
     implementation(DevelopmentDependencies.dagger)
     kapt(DevelopmentDependencies.daggerCompiler)
+
 
     testImplementation(TestDependencies.junit)
     androidTestImplementation(AndroidTestDependencies.testRunner)

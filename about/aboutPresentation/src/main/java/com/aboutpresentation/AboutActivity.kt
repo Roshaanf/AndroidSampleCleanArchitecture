@@ -8,7 +8,7 @@ import com.aboutpresentation.di.PresentationInjector
 import com.basepresentation.base.BaseActivity
 import javax.inject.Inject
 
-class AboutActivity : BaseActivity() {
+internal class AboutActivity : BaseActivity() {
 
     private lateinit var viewModel: AboutUsViewModel
 

@@ -19,10 +19,11 @@ object Versions {
     val room_version = "2.1.0-alpha04"
     val dagger_version = "2.27"
     val glide_version = "4.11.0"
+    val recyclerview_version = "1.0.0"
 }
 
 object GradleDependencies {
-    val androidGradleTools = "com.android.tools.build:gradle:3.5.0"
+    val androidGradleTools = "com.android.tools.build:gradle:4.0.0"
     val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
 }
 
@@ -41,10 +42,13 @@ object DevelopmentDependencies {
 
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
     val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit_version}"
-    val okhttpLoggingInterceptor="com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor_version}"
+    val okhttpLoggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp_logging_interceptor_version}"
+
     //   this dependecy contains coroutines also Dispatcher.Main which is specialized for android
     val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_version}"
+
     //    this dependency wont include android side, so adding core dependency for only domain module
 //  as we don't want out domain to have android dependency
     val coroutines =
@@ -57,6 +61,8 @@ object DevelopmentDependencies {
 
     val dagger = "com.google.dagger:dagger:${Versions.dagger_version}"
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
+
+    val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerview_version}"
 }
 
 

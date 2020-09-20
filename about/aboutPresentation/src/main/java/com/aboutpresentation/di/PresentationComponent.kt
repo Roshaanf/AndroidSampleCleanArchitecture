@@ -11,6 +11,6 @@ import dagger.Component
     dependencies = [
         DomainExposer::class]
 )
-interface PresentationComponent {
+internal interface PresentationComponent {
     fun inject(aboutActivity: AboutActivity)
 }

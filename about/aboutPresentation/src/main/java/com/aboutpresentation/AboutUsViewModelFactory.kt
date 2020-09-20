@@ -6,7 +6,7 @@ import com.basepresentation.di.scope.PresentationScope
 import javax.inject.Inject
 
 @PresentationScope
-class AboutUsViewModelFactory @Inject constructor(private val viewModel: AboutUsViewModel) :
+internal class AboutUsViewModelFactory @Inject constructor(private val viewModel: AboutUsViewModel) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass != AboutUsViewModel::class.java)

@@ -12,7 +12,7 @@ import kotlinx.coroutines.async
 import javax.inject.Inject
 
 @PresentationScope
-class AboutUsViewModel @Inject constructor(private val fetchAboutUsUseCase: FetchAboutUsUseCase) :
+internal class AboutUsViewModel @Inject constructor(private val fetchAboutUsUseCase: FetchAboutUsUseCase) :
     BaseViewModel() {
 
     private val _aboutUsText: MutableLiveData<String> = MutableLiveData()

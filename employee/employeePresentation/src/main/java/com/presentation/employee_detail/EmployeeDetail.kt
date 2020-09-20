@@ -1,4 +1,4 @@
-package com.presentation
+package com.presentation.employee_detail
 
 
 import android.content.Intent
@@ -11,27 +11,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.basepresentation.base.BaseFragment
 import com.basepresentation.util.exhaustive
-import com.presentation.databinding.FragmentItemDetailBinding
+import com.presentation.R
+import com.presentation.databinding.FragmentEmployeeDetailBinding
 import com.presentation.di.PresentationInjector
-import kotlinx.android.synthetic.main.fragment_item_detail.*
+import kotlinx.android.synthetic.main.fragment_employee_detail.*
 import javax.inject.Inject
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class ItemDetail : BaseFragment() {
+internal class EmployeeDetail : BaseFragment() {
 
-    private lateinit var viewModel: ItemDetailViewModel
+    private lateinit var viewModel: EmployeeDetailViewModel
 
     @Inject
-    lateinit var viewModelFactory: ItemDetailViewModelFactory
+    lateinit var viewModelFactory: EmployeeDetailViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,15 +34,15 @@ class ItemDetail : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding =
-            DataBindingUtil.inflate<FragmentItemDetailBinding>(
+            DataBindingUtil.inflate<FragmentEmployeeDetailBinding>(
                 inflater,
-                R.layout.fragment_item_detail,
+                R.layout.fragment_employee_detail,
                 container,
                 false
             )
 
         PresentationInjector
-            .create()
+            .buildEmployeeDetailComponent()
             .inject(this)
 
         viewModel = attachViewModel(viewModelFactory)
@@ -59,24 +54,12 @@ class ItemDetail : BaseFragment() {
     }
 
     override fun setObservers() {
-
-        viewModel.events.observe(this, Observer {
-            val event = it.getEventIfNotHandled()
-            if (event != null)
-                when (event) {
-                    ItemDetailEvents.OPEN_ABOUT_US -> {
-                        val intent = Intent(
-                            requireContext(),
-                            Class.forName("com.aboutpresentation.AboutActivity")
-                        )
-                        startActivity(intent)
-                    }
-                }.exhaustive
-        })
     }
 
     override fun initializeComponents() {
         observeUIEvents(viewModel)
+
+        viewModel.handleIntent(arguments)
     }
 
     override fun showLoader() {

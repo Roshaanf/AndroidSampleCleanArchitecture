@@ -1,6 +1,7 @@
 package com.basepresentation.base
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,8 +35,8 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initializeComponents()
         setObservers()
@@ -49,7 +50,7 @@ abstract class BaseFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory).get(V::class.java)
 
 
-//    call this inside initialize components and pass viewmodel
+    //    call this inside initialize components and pass viewmodel
     fun observeUIEvents(viewModel: BaseViewModel) {
         viewModel.obUiEvent.observe(viewLifecycleOwner, Observer {
             var event = it.getEventIfNotHandled()
@@ -80,4 +81,11 @@ abstract class BaseFragment : Fragment() {
     abstract protected fun hideLoader()
 
 
+    fun startActivity(className: String) {
+        val intent = Intent(
+            requireContext(),
+            Class.forName(className)
+        )
+        startActivity(intent)
+    }
 }

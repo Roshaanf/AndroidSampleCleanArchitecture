@@ -8,7 +8,7 @@ import com.domain.repository.GetEmployeeRepository
 import javax.inject.Inject
 
 @DomainScope
-class GetItemUseCase @Inject constructor(
+class GetEmployeeUseCase @Inject constructor(
     private val getItemRepository: GetEmployeeRepository
 ) {
 

@@ -5,7 +5,7 @@
 
         <variable
                 name="viewModel"
-                type="com.presentation.ItemDetailViewModel" />
+                type="com.presentation.employee_detail.EmployeeDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,14 +14,6 @@
             android:layout_height="match_parent"
             tools:context=".presentation.itemdetail.ItemDetail">
 
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{()->viewModel.onAboutUsClicked()}"
-                android:text="About Us"
-                android:textAllCaps="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
                 android:id="@+id/textView"
