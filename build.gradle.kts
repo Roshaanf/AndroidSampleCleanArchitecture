@@ -2,7 +2,7 @@
 
 // buildscript block is only for dependencies required by gradle to build the project
 buildscript {
-    val kotlin_version by extra("1.3.72")
+    val kotlin_version by extra("1.4.10")
     repositories {
 //        gradle will fetch dependencies from here for itself to build project,dependencies declared
 //        with classpath will be downloaded from below repositorie, dependencies for our project
@@ -17,7 +17,6 @@ buildscript {
 //        classpath is used when buildscript/gradle needs dependencies, when our project need dependencies we use implementation
         classpath( GradleDependencies.androidGradleTools)
         classpath (GradleDependencies.kotlinGradlePlugin)
-        "classpath"("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
