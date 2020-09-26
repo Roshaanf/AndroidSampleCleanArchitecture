@@ -37,6 +37,8 @@ dependencies {
 
     implementation(DevelopmentDependencies.ktxCore)
 
+    implementation(DevelopmentDependencies.viewModelKtx)
+
     implementation(DevelopmentDependencies.appCompat)
 
     //    glide
