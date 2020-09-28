@@ -1,4 +1,4 @@
-package com.basedata
+package com.basedata.network
 
 import okhttp3.Request
 import retrofit2.*

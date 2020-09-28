@@ -1,4 +1,4 @@
-package com.basedata
+package com.basedata.network
 
 class UnAuthenticatedException(private val errorMessage: String?) : Exception(errorMessage)
 class ResourceNotFound(private val errorMessage: String?) : Exception(errorMessage)

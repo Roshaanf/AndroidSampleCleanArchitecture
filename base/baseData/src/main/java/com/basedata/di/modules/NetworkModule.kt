@@ -1,5 +1,6 @@
 package com.basedata.di.modules
 
+import com.basedata.network.MockInterceptor
 import com.basedata.di.scope.BaseDataScope
 import dagger.Module
 import dagger.Provides
@@ -18,6 +19,7 @@ internal object NetworkModule {
         .writeTimeout(30, TimeUnit.SECONDS)
         .connectTimeout(30, TimeUnit.SECONDS)
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(MockInterceptor)
         .build()
 
 

@@ -1,8 +1,10 @@
 package com.basepresentation.base
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,13 +28,27 @@ private const val ARG_PARAM2 = "param2"
  */
 abstract class BaseFragment : Fragment() {
 
+    val TAG = "BaseFragment ${this.javaClass.simpleName}"
+
+    init {
+        Log.d(TAG, "init")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d(TAG, "OnCreateView")
+
         return TextView(context).apply {
             setText(R.string.hello_blank_fragment)
         }
+    }
+
+    override fun onAttach(context: Context) {
+        initiateInjection()
+        super.onAttach(context)
+        Log.d(TAG, "OnAttach")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,10 +56,23 @@ abstract class BaseFragment : Fragment() {
 
         initializeComponents()
         setObservers()
+
+        Log.d(TAG, "OnViewCreated")
     }
 
+    /*
+     * override this function and initate dependency injection
+     **/
+    abstract protected fun initiateInjection()
 
+    /*
+     * Override this function and perform UI operations call observeUiEvents in this function
+     **/
     abstract fun initializeComponents()
+
+    /*
+     * Override thisfunction to observe viwmodel obervalbles
+     **/
     abstract fun setObservers()
 
     protected inline fun <reified V : ViewModel> attachViewModel(viewModelFactory: ViewModelProvider.Factory): V =
@@ -87,5 +116,37 @@ abstract class BaseFragment : Fragment() {
             Class.forName(className)
         )
         startActivity(intent)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "OnPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "OnStop")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d(TAG, "onDetach")
     }
 }

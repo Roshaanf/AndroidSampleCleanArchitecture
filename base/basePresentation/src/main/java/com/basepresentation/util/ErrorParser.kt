@@ -2,10 +2,10 @@ package com.basepresentation.util
 
 
 
-import com.basedata.ConnectivityException
-import com.basedata.ConverterException
-import com.basedata.ResourceNotFound
-import com.basedata.UnAuthenticatedException
+import com.basedata.network.ConnectivityException
+import com.basedata.network.ConverterException
+import com.basedata.network.ResourceNotFound
+import com.basedata.network.UnAuthenticatedException
 import java.lang.Exception
 
 fun parseError(response: Exception) =

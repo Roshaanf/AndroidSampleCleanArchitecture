@@ -28,6 +28,14 @@ internal class EmployeeDetail : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: EmployeeDetailViewModelFactory
 
+
+    override fun initiateInjection() {
+        PresentationInjector
+            .buildEmployeeDetailComponent()
+            .inject(this)
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,9 +49,6 @@ internal class EmployeeDetail : BaseFragment() {
                 false
             )
 
-        PresentationInjector
-            .buildEmployeeDetailComponent()
-            .inject(this)
 
         viewModel = attachViewModel(viewModelFactory)
 
@@ -55,6 +60,7 @@ internal class EmployeeDetail : BaseFragment() {
 
     override fun setObservers() {
     }
+
 
     override fun initializeComponents() {
         observeUIEvents(viewModel)

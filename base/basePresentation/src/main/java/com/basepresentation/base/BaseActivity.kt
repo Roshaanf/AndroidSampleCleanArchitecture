@@ -14,9 +14,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        initiateInjection()
         super.onCreate(savedInstanceState)
 
-        initiateInjection()
         callAttachViewModel()
         startObservingNavEvents()
         setObservers()

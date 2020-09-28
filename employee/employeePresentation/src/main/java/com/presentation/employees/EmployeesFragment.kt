@@ -33,8 +33,6 @@ internal class EmployeesFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: EmployeesViewModelFactory
 
-    @Inject
-    lateinit var adapter: EmployeesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,36 +41,31 @@ internal class EmployeesFragment : BaseFragment() {
         // Inflate the layout for this fragment
         binding = FragmentEmployeesBinding.inflate(inflater)
 
+        viewModel = attachViewModel(viewModelFactory)
+
+        binding.viewModel=viewModel
+        binding.lifecycleOwner=this
 
         return binding.root
     }
 
-
-    override fun initializeComponents() {
-
-
+    override fun initiateInjection() {
         PresentationInjector
             .buildEmployeesComponent()
             .inject(this)
+    }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
 
-        viewModel = attachViewModel(viewModelFactory)
-
+    override fun initializeComponents() {
         observeUIEvents(viewModel)
-
     }
 
     override fun setObservers() {
         viewModel.events
-            .observe(this, Observer {
+            .observe(viewLifecycleOwner, Observer {
                 val event = it.getEventIfNotHandled()
                 if (event != null)
                     when (event) {
-                        is EmployeesEvents.EMPLOYEES_FETCHED -> {
-                            adapter.addItems(event.list)
-                        }
                         is EmployeesEvents.OPEN_EMPLOYEE_DETAIL -> {
                             requireFragmentManager()
                                 .beginTransaction()

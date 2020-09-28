@@ -27,6 +27,10 @@ android {
 
         }
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -43,6 +47,8 @@ dependencies {
 
     //    glide
     implementation(DevelopmentDependencies.glide)
+
+    implementation(DevelopmentDependencies.recyclerView)
 
     //    dagger
     implementation(DevelopmentDependencies.dagger)
