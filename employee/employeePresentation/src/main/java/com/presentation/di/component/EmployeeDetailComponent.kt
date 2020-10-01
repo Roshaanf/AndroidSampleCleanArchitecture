@@ -1,7 +1,9 @@
 package com.presentation.di.component
 
+import android.os.Bundle
 import com.presentation.di.scope.EmployeeDetailScope
 import com.presentation.employee_detail.EmployeeDetail
+import dagger.BindsInstance
 import dagger.Component
 import dagger.Subcomponent
 
@@ -12,6 +14,6 @@ internal interface EmployeeDetailComponent{
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(): EmployeeDetailComponent
+        fun create(@BindsInstance bundle: Bundle?): EmployeeDetailComponent
     }
 }

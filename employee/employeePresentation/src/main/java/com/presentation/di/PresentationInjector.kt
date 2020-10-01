@@ -1,5 +1,6 @@
 package com.presentation.di
 
+import android.os.Bundle
 import com.basepresentation.BaseApplication
 import com.data.di.DataInjector
 import com.domain.di.DomainInjector
@@ -28,9 +29,9 @@ internal object PresentationInjector {
             .create()
 
 
-    fun buildEmployeeDetailComponent() =
+    fun buildEmployeeDetailComponent(bundle: Bundle?) =
         presentationComponent
             .provideEmployeeDetailComponent()
-            .create()
+            .create(bundle)
 
 }

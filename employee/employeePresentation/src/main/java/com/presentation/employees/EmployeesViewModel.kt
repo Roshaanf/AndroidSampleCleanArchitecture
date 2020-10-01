@@ -8,10 +8,11 @@ import com.basedomain.Result
 import com.basepresentation.base.BaseEvent
 import com.basepresentation.base.BaseViewModel
 import com.basepresentation.util.parseError
-import com.domain.entity.EmployeeEntity
 import com.domain.usecase.GetEmployeesUseCase
 import com.presentation.di.scope.EmployeesScope
 import com.presentation.employees.adapter.EmployeesAdapter
+import com.presentation.mapper.transform
+import com.presentation.model.Employee
 import kotlinx.coroutines.async
 import javax.inject.Inject
 
@@ -21,7 +22,7 @@ internal class EmployeesViewModel @Inject constructor(
     private val getEmployeesUseCase: GetEmployeesUseCase,
     val adapter: EmployeesAdapter
 ) : BaseViewModel(),
-    BaseRecyclerViewContract.ClickHandler<EmployeesAdapter.ClickEvents, EmployeeEntity>
+    BaseRecyclerViewContract.ClickHandler<EmployeesAdapter.ClickEvents, Employee>
 {
 
 
@@ -29,8 +30,8 @@ internal class EmployeesViewModel @Inject constructor(
     val events: LiveData<BaseEvent<EmployeesEvents>>
         get() = _events
 
-    private val _list = MutableLiveData<List<EmployeeEntity>>().apply { value = emptyList() }
-    val list: LiveData<List<EmployeeEntity>>
+    private val _list = MutableLiveData<List<Employee>>().apply { value = emptyList() }
+    val list: LiveData<List<Employee>>
         get() = _list
 
     init {
@@ -40,7 +41,7 @@ internal class EmployeesViewModel @Inject constructor(
             when (val result = getEmployeesUseCase()) {
                 is Result.Success -> {
                     hideLoader()
-                    _list.value = result.data!!
+                    _list.value = transform(result.data!!)
                 }
                 is Result.Error -> {
                     showError(parseError(result.exception))
@@ -53,7 +54,7 @@ internal class EmployeesViewModel @Inject constructor(
 
     override fun onRecyclerViewItemClicked(
         event: EmployeesAdapter.ClickEvents,
-        item: EmployeeEntity
+        item: Employee
     ) {
         _events.value = BaseEvent(EmployeesEvents.OPEN_EMPLOYEE_DETAIL(item.id ?: 0))
     }

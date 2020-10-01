@@ -31,7 +31,7 @@ internal class EmployeeDetail : BaseFragment() {
 
     override fun initiateInjection() {
         PresentationInjector
-            .buildEmployeeDetailComponent()
+            .buildEmployeeDetailComponent(arguments)
             .inject(this)
     }
 
@@ -64,8 +64,6 @@ internal class EmployeeDetail : BaseFragment() {
 
     override fun initializeComponents() {
         observeUIEvents(viewModel)
-
-        viewModel.handleIntent(arguments)
     }
 
     override fun showLoader() {

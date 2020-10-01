@@ -14,8 +14,7 @@ import com.presentation.R
 import com.presentation.databinding.FragmentEmployeesBinding
 import com.presentation.di.PresentationInjector
 import com.presentation.employee_detail.EmployeeDetail
-import com.presentation.employees.adapter.EmployeesAdapter
-import kotlinx.android.synthetic.main.activity_main.view.*
+
 import javax.inject.Inject
 
 
